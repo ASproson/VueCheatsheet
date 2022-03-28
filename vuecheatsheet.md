@@ -73,3 +73,29 @@ data() {
       {{ variant.color }}
 </div>
 ```
+
+### Multiple Class Binding
+
+```javascript
+data() {
+  return {
+    activeClass = true,
+  }
+}
+```
+
+```html
+<div
+     class='color-circle'
+     :class='{ active: activeClass}'>
+</div>
+```
+
+If activeClass evaluates to true, then the new div class becomes color-circle activeClass; they are essentially combined
+
+```html
+<div :class='[activeClass ? activeClass : '' ]'>
+</div>
+```
+
+We can also make use of inline ternarys 
