@@ -1,13 +1,37 @@
 # Vue Cheatsheet
 
-```javascript
+## If-Else-Show
+
+```html
 <p v-if='InStock'>In Stock</p>
 <p v-else>Out of Stock Stock</p>
-// <p v-else-if>Out of Stock Stock</p>
+<!-- <p v-else-if>Out of Stock Stock</p> -->
 
 <p v-show='InStock'>In Stock</p>
 ```
 
+InStock pulls from exposed data() on main.js (global)
+
 When to use v-if and v-show? 
 
 As a general rule for performance, v-if has higher toggle costs (whenever the conditional changes) and v-show has higher initial render costs. So if you need to toggle something frequently, use v-show
+
+## v-for
+
+```html
+<ul>
+  <li v-for="(detail, index) in details">{{ detail }}</li>
+</ul>
+
+<div v-for="variant in variants" :key="variant.id">{{ variant.color }}</div>
+```
+
+Including key is more performant, as is including index when no keys available. Note the :assignment, this is shorthand for attribute binding in Vue, aka v-bind
+
+## Event Handling
+
+```html
+<button class="button" @click="addToCart">Add to Cart</button>
+```
+
+@assignment is shorthand for v-on, and can be used for any event assignment such as hover etc
