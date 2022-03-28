@@ -101,3 +101,28 @@ If activeClass evaluates to true, then the new div class becomes color-circle ac
 ```
 
 We can also make use of inline ternarys 
+
+## Computed Properties
+
+```html
+<h1>{{ title }}</h1>
+```
+
+```javascript
+data() {
+  return {
+    product: 'Socks',
+    brand: 'Vue Mastery',
+  }
+},
+methods: {
+  ...
+},
+computed: {
+  title() {
+    return this.brand + ' ' + this.product
+  }
+}
+```
+
+Computed properties cache the value, and as such boosts performance
