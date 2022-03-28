@@ -127,7 +127,7 @@ computed: {
 
 Computed properties cache the value, and as such boosts performance
 
-## Components and Props
+## Components
 
 Components enable reusale blocks and extract logic into managable chunks (MVC):
 
@@ -157,8 +157,12 @@ app.component('product-display', {
 })
 ```
 
-Note the need for ` `  and /*html*/ to enable the rendering of the component. In index html we can then simply call the componenet with:
+Note the need for the single open and close code quotes, and the html comment to enable the rendering of the component. In index html we can then simply call the componenet with:
 
 ```html
 <product-display></product-display>
 ```
+
+## Props
+
+
