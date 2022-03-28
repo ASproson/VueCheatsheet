@@ -35,3 +35,41 @@ Including key is more performant, as is including index when no keys available. 
 ```
 
 @assignment is shorthand for v-on, and can be used for any event assignment such as hover etc
+
+
+## Class & Style Binding
+
+```html
+<div 
+      v-for="variant in variants" 
+      :key="variant.id" 
+      @mouseover="updateImage(variant.image)" 
+      class="color-circle"
+      :style="{ backgroundColor: variant.color }">
+      {{ variant.color }}
+</div>
+```
+
+This in-line styling, but we could also expose a style object on data() and reference the styles in a cleaner manner:
+
+```javascript
+data() {
+  return {
+    styles: {
+      color: 'red',
+      fontSize: '14px',
+    }
+  }
+}
+```
+
+```html
+<div 
+      v-for="variant in variants" 
+      :key="variant.id" 
+      @mouseover="updateImage(variant.image)" 
+      class="color-circle"
+      :style="styles">
+      {{ variant.color }}
+</div>
+```
