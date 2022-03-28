@@ -74,6 +74,8 @@ data() {
 </div>
 ```
 
+If passing a :bound style or class, ensure it is camelCase; if kebab-case, ensure it is wrapped in ''
+
 ### Multiple Class Binding
 
 ```javascript
