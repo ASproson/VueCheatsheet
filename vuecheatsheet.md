@@ -126,3 +126,39 @@ computed: {
 ```
 
 Computed properties cache the value, and as such boosts performance
+
+## Components and Props
+
+Components enable reusale blocks and extract logic into managable chunks (MVC):
+
+```javascript
+app.component('product-display', {
+  template:
+  /*html*/
+  `
+  <div class='product-display'></div>
+  `,
+  data() {
+    return {
+      product: 'socks',
+      brand: 'Vue',
+    }  
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + ' ' + this.product
+    }
+  }
+})
+```
+
+Note the need for ` `  and /*html*/ to enable the rendering of the component. In index html we can then simply call the componenet with:
+
+```html
+<product-display></product-display>
+```
