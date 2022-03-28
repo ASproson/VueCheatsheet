@@ -165,4 +165,65 @@ Note the need for the single open and close code quotes, and the html comment to
 
 ## Props
 
+But what if a component needs access to something outside of itself? Let's say the parent component had the message: Hello, but because each component has their own isolated scope, there's no way for the child component to access that message
 
+This where we use props, which are custom attributes we use for passing data into a component. They function like a funnel, and channel data downwards:
+
+```javascript
+// main.js
+const app = Vue.createApp({
+    data() {
+        return {
+            cart: 0,
+            premium: true,
+        }
+    },
+    methods: {
+
+    }
+})
+```
+
+To access the premium prop, we need to pass it down and then call it on the component inside the html:
+
+```javascript
+// ProductDisplay.js
+app.component('product-display', {
+    props: {
+        premium: {
+            type: Boolean,
+            required: true,
+        }
+    },
+   template:
+  /*html*/
+  `
+  <div class='product-display'></div>
+  ...
+  <p>Shipping: {{ shipping }}</p>
+  `,
+  data() {
+    return {
+      product: 'socks',
+      brand: 'Vue',
+    }  
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + ' ' + this.product
+    }, 
+    shipping() {
+      return this.premium ? 'Free' : '$4.99'
+  }
+```
+
+```html
+<product-display :premium="premium"></product-display>
+```
+
+We can also enforce type and if it is required in the props object. We also v-bind premium so that we can receive the new value of premium if it ever changes
