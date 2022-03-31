@@ -227,3 +227,58 @@ app.component('product-display', {
 ```
 
 We can also enforce type and if it is required in the props object. We also v-bind premium so that we can receive the new value of premium if it ever changes
+
+# Understanding Vue Boilerplate
+
+```
+vue create platform-frontend-demo
+Manually select features
+> Router
+> Vuex
+> 3.x 
+> Y use history mode
+> ESLint + Prettier
+> Lint on save
+> In package.json
+
+cd platform-frontend-demo
+npm run serve
+```
+
+src is the entire app code, everything that updates the DOM resides inside of here
+
+Assets: 
+Images, fonts, etc
+
+Components: 
+Building blocks of the app
+
+Router: App navigation
+
+Store: State management in a Vue app
+
+Views: Components for different views/pages of the app, and act as parent containers for files in the components folder
+
+App.vue is the root component, all other components are nested within this
+
+Main.js renders the app and mounts it to the DOM
+
+Note that in main.js we mount #app, which is the id reference to index.html, which in turn references App.vue
+
+## App Structure
+
+![vue app structure](./structure.svg)
+
+
+## Views Folder
+
+When looking at a webapp built in Vue, we're really looking at a collection of Vue components, traditionally built with single file Vue components. These components typically have these sections:
+
+- Template (the skeleton that gives the component structure, HTML) 
+- Script (the brain that gives the functionality and behavior, JS)
+- Style (the clothes, makeup etc, CSS)
+
+The views folder is where we store things like 'AboutView', and 'HomeView'. Within these components we nest other components. For example, HelloWorld.vue, in components, is nested within HomeView.vue. Within the template of HomeView we render HelloWorld, keeping the HomeView file managable, and extracting out the primary code into HelloWorld
+
+In the HomeView component we are passing a msg down to HelloWorld, which is the being called with a h1 tag. Note the style scoped attribute in HelloWorld, this allows us to isolate styles to our given component 
+
