@@ -3,16 +3,16 @@
 ## If-Else-Show
 
 ```html
-<p v-if='InStock'>In Stock</p>
+<p v-if="InStock">In Stock</p>
 <p v-else>Out of Stock Stock</p>
 <!-- <p v-else-if>Out of Stock Stock</p> -->
 
-<p v-show='InStock'>In Stock</p>
+<p v-show="InStock">In Stock</p>
 ```
 
 InStock pulls from exposed data() on main.js (global)
 
-When to use v-if and v-show? 
+When to use v-if and v-show?
 
 As a general rule for performance, v-if has higher toggle costs (whenever the conditional changes) and v-show has higher initial render costs. So if you need to toggle something frequently, use v-show
 
@@ -36,17 +36,17 @@ Including key is more performant, as is including index when no keys available. 
 
 @assignment is shorthand for v-on, and can be used for any event assignment such as hover etc
 
-
 ## Class & Style Binding
 
 ```html
-<div 
-      v-for="variant in variants" 
-      :key="variant.id" 
-      @mouseover="updateImage(variant.image)" 
-      class="color-circle"
-      :style="{ backgroundColor: variant.color }">
-      {{ variant.color }}
+<div
+  v-for="variant in variants"
+  :key="variant.id"
+  @mouseover="updateImage(variant.image)"
+  class="color-circle"
+  :style="{ backgroundColor: variant.color }"
+>
+  {{ variant.color }}
 </div>
 ```
 
@@ -64,13 +64,14 @@ data() {
 ```
 
 ```html
-<div 
-      v-for="variant in variants" 
-      :key="variant.id" 
-      @mouseover="updateImage(variant.image)" 
-      class="color-circle"
-      :style="styles">
-      {{ variant.color }}
+<div
+  v-for="variant in variants"
+  :key="variant.id"
+  @mouseover="updateImage(variant.image)"
+  class="color-circle"
+  :style="styles"
+>
+  {{ variant.color }}
 </div>
 ```
 
@@ -87,10 +88,7 @@ data() {
 ```
 
 ```html
-<div
-     class='color-circle'
-     :class='{ active: activeClass}'>
-</div>
+<div class="color-circle" :class="{ active: activeClass}"></div>
 ```
 
 If activeClass evaluates to true, then the new div class becomes color-circle activeClass; they are essentially combined
@@ -100,7 +98,7 @@ If activeClass evaluates to true, then the new div class becomes color-circle ac
 </div>
 ```
 
-We can also make use of inline ternarys 
+We can also make use of inline ternarys
 
 ## Computed Properties
 
@@ -132,29 +130,29 @@ Computed properties cache the value, and as such boosts performance
 Components enable reusale blocks and extract logic into managable chunks (MVC):
 
 ```javascript
-app.component('product-display', {
+app.component("product-display", {
   template:
-  /*html*/
-  `
+    /*html*/
+    `
   <div class='product-display'></div>
   `,
   data() {
     return {
-      product: 'socks',
-      brand: 'Vue',
-    }  
+      product: "socks",
+      brand: "Vue",
+    };
   },
   methods: {
     addToCart() {
-      this.cart += 1
-    }
+      this.cart += 1;
+    },
   },
   computed: {
     title() {
-      return this.brand + ' ' + this.product
-    }
-  }
-})
+      return this.brand + " " + this.product;
+    },
+  },
+});
 ```
 
 Note the need for the single open and close code quotes, and the html comment to enable the rendering of the component. In index html we can then simply call the componenet with:
@@ -172,16 +170,14 @@ This where we use props, which are custom attributes we use for passing data int
 ```javascript
 // main.js
 const app = Vue.createApp({
-    data() {
-        return {
-            cart: 0,
-            premium: true,
-        }
-    },
-    methods: {
-
-    }
-})
+  data() {
+    return {
+      cart: 0,
+      premium: true,
+    };
+  },
+  methods: {},
+});
 ```
 
 To access the premium prop, we need to pass it down and then call it on the component inside the html:
@@ -206,7 +202,7 @@ app.component('product-display', {
     return {
       product: 'socks',
       brand: 'Vue',
-    }  
+    }
   },
   methods: {
     addToCart() {
@@ -216,7 +212,7 @@ app.component('product-display', {
   computed: {
     title() {
       return this.brand + ' ' + this.product
-    }, 
+    },
     shipping() {
       return this.premium ? 'Free' : '$4.99'
   }
@@ -235,7 +231,7 @@ vue create platform-frontend-demo
 Manually select features
 > Router
 > Vuex
-> 3.x 
+> 3.x
 > Y use history mode
 > ESLint + Prettier
 > Lint on save
@@ -247,10 +243,10 @@ npm run serve
 
 src is the entire app code, everything that updates the DOM resides inside of here
 
-Assets: 
+Assets:
 Images, fonts, etc
 
-Components: 
+Components:
 Building blocks of the app
 
 Router: App navigation
@@ -269,16 +265,16 @@ Note that in main.js we mount #app, which is the id reference to index.html, whi
 
 ![vue app structure](./structure.svg)
 
+![vue routing template](./routing.drawio.svg)
 
 ## Views Folder
 
 When looking at a webapp built in Vue, we're really looking at a collection of Vue components, traditionally built with single file Vue components. These components typically have these sections:
 
-- Template (the skeleton that gives the component structure, HTML) 
+- Template (the skeleton that gives the component structure, HTML)
 - Script (the brain that gives the functionality and behavior, JS)
 - Style (the clothes, makeup etc, CSS)
 
 The views folder is where we store things like 'AboutView', and 'HomeView'. Within these components we nest other components. For example, HelloWorld.vue, in components, is nested within HomeView.vue. Within the template of HomeView we render HelloWorld, keeping the HomeView file managable, and extracting out the primary code into HelloWorld
 
-In the HomeView component we are passing a msg down to HelloWorld, which is the being called with a h1 tag. Note the style scoped attribute in HelloWorld, this allows us to isolate styles to our given component 
-
+In the HomeView component we are passing a msg down to HelloWorld, which is the being called with a h1 tag. Note the style scoped attribute in HelloWorld, this allows us to isolate styles to our given component
