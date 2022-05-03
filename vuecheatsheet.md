@@ -127,7 +127,7 @@ Computed properties cache the value, and as such boosts performance
 
 ## Components
 
-Components enable reusale blocks and extract logic into managable chunks (MVC):
+Components enable reusable blocks and extract logic into managable chunks (MVC):
 
 ```javascript
 app.component("product-display", {
